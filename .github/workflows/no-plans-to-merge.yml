@@ -1,6 +1,4 @@
 name: No Plans to Merge
-permissions:
-  pull-requests: write
 
 on:
   pull_request:
