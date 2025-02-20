@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\User;
-use Illuminate\Support\Facades\Redis;
+
 it('provides users in random paginated order', function () {
     $users = User::factory(4)->create();
 
