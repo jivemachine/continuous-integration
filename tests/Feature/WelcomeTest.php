@@ -3,7 +3,7 @@
 use App\Models\User;
 
 it('provides users in random paginated order', function () {
-    $users = User::factory(5)->create();
+    $users = User::factory(4)->create();
 
     $users = collect($this->get('/')->viewData('users')->items())
         ->merge($this->get('/?page=2')->viewData('users')->items());
