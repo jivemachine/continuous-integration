@@ -12,6 +12,14 @@ jobs:
         ports:
           - 6379:6379
 
+      mysql:
+        image: mysql:8.0
+        ports:
+          - 3306:3306
+        env:
+          MYSQL_DATABASE: laravel
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4.2.2
@@ -32,8 +40,4 @@ jobs:
           php artisan key:generate
 
       - name: Run Tests
-        env:
-          DB_CONNECTION: sqlite
-          DB_DATABASE: ":memory:"
-        run: |
-          php artisan test --compact
+        run: php artisan test --compact
