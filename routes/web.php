@@ -1,9 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\User;
 
 Route::get('/', function () {
-    return view('welcome');
+    $users = User::paginate(2);
+    return view('welcome', ['users' => $users]);
 });
 
 Route::middleware([
