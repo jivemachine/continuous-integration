@@ -35,4 +35,6 @@ jobs:
         env:
           DB_CONNECTION: sqlite
           DB_DATABASE: ":memory:"
-        run: php artisan test --compact
+        run: |
+          php artisan migrate --seed
+          php artisan test --compact
