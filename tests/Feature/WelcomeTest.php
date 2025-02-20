@@ -2,6 +2,7 @@
 
 use App\Models\User;
 
+// testing redis
 it('provides users in random paginated order', function () {
     $users = User::factory(4)->create();
 
