@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\User;
-// note for setting up cache dependeny on main branch
+
 it('provides users in random paginated order', function () {
     $users = User::factory(5)->create();
 
