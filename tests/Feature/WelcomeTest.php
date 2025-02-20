@@ -3,6 +3,7 @@
 use App\Models\User;
 use Illuminate\Support\Facades\Redis;
 
+// check if redis is working
 it('increments the page count for each visit', function () {
     Redis::del('landing-page-views');
 
