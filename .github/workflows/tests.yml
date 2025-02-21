@@ -45,4 +45,4 @@ jobs:
           php artisan key:generate
 
       - name: Run Tests
-        run: php artisan test --compact
+        run: php artisan test --compact --coverage --min=75
