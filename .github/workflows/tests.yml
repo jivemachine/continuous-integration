@@ -28,6 +28,7 @@ jobs:
         uses: ./.github/actions/setup
         with:
           php-version: "8.3"
+          coverage: xdebug
 
       # this is an example after setting upm secrets on the github settings
       # - name: authenticate AWS
