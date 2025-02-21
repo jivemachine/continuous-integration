@@ -21,8 +21,6 @@ jobs:
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
 
     env:
-      PHP_VERSION: "8.3"
-      PHP_EXTENSIONS: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, gd, redis, igbinary, msgpack, memcached, gmp, :php-psr
       CACHE_KEY: extension-cache-v1
 
     steps:
@@ -31,6 +29,8 @@ jobs:
 
       - name: Setup
         uses: ./.github/actions/setup
+        with:
+          php-verision: "8.3"
 
       - name: Install Dependencies
         run: composer install -q --no-interaction --no-progress
