@@ -20,9 +20,6 @@ jobs:
           MYSQL_DATABASE: laravel
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
 
-    env:
-      CACHE_KEY: extension-cache-v1
-
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4.2.2
