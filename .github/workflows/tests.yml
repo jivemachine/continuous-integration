@@ -27,7 +27,7 @@ jobs:
       - name: Setup
         uses: ./.github/actions/setup
         with:
-          php-verision: "8.3"
+          php-version: "8.3"
 
       - name: Install Dependencies
         run: composer install -q --no-interaction --no-progress
