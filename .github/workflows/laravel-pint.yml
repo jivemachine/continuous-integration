@@ -9,52 +9,20 @@ jobs:
   laravel-pint:
     runs-on: ubuntu-latest
 
-    env:
-      PHP_VERSION: "8.3"
-      PHP_EXTENSIONS: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, gd, redis, igbinary, msgpack, memcached, gmp, :php-psr
-      CACHE_KEY: extension-cache-v1
-
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4.2.2
         with:
           ref: ${{ github.head_ref}}
 
-      - name: Setup cache environment
-        id: extcache
-        uses: shivammathur/cache-extensions@v1
+      - name: Setup
+        uses: ./.github/actions/setup
         with:
-          php-version: ${{ env.PHP_VERSION}}
-          extensions: ${{ env.PHP_EXTENSIONS}}
-          key: ${{ env.CACHE_KEY }}
-
-      - name: Cache extensions
-        uses: actions/cache@v4
-        with:
-          path: ${{ steps.extcache.outputs.dir }}
-          key: ${{ steps.extcache.outputs.key }}
-          restore-keys: ${{ steps.extcache.outputs.key }}
-
-      - name: Setup PHP and Composer
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ env.PHP_VERSION }}
-          extensions: ${{ env.PHP_EXTENSIONS}}
-          tools: composer:v2
+          php-version: "8.3"
+          php-extensions: "json, dom, curl, libxml, mbstring"
 
       - name: Install Laravel Pint
         run: composer global require laravel/pint
-
-      - name: Get Composer cache dir
-        id: composer-cache-dir
-        run: echo dir=$(composer config cache-files-dir) >> $GITHUB_OUTPUT
-
-      - name: Cache dependencies
-        uses: actions/cache@v4.2.1
-        with:
-          key: composer-cache-${{ hashFiles('**/composer.lock') }}
-          path: ${{ steps.composer-cache-dir.outputs.dir}}
-          restore-keys: composer-cache-
 
       - name: Run Pint
         run: pint
