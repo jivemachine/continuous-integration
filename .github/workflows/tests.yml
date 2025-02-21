@@ -29,6 +29,13 @@ jobs:
         with:
           php-version: "8.3"
 
+      # this is an example after setting upm secrets on the github settings
+      - name: authenticate AWS
+        env:
+          AWS_EMAIL: ${{ secrets.AWS_EMAIL }}
+          AWS_PASSWORD: ${{ secrets.AWS_PASSWORD }}
+        uses: composer config http-basic.aws.amazon.com "$AWS_EMAIL" "AWS_PASSWORD"
+
       - name: Install Dependencies
         run: composer install -q --no-interaction --no-progress
 
