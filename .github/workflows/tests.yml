@@ -28,6 +28,14 @@ jobs:
         uses: ./.github/actions/setup
         with:
           php-version: "8.3"
+          coverage: xdebug
+
+      # this is an example after setting upm secrets on the github settings
+      # - name: authenticate AWS
+      #   env:
+      #     AWS_EMAIL: ${{ secrets.AWS_EMAIL }}
+      #     AWS_PASSWORD: ${{ secrets.AWS_PASSWORD }}
+      #   uses: composer config http-basic.aws.amazon.com "$AWS_EMAIL" "AWS_PASSWORD"
 
       - name: Install Dependencies
         run: composer install -q --no-interaction --no-progress
@@ -38,4 +46,4 @@ jobs:
           php artisan key:generate
 
       - name: Run Tests
-        run: php artisan test --compact
+        run: php artisan test --compact --coverage --min=75
